@@ -6,6 +6,7 @@ namespace Blockchain
 {
     public class Pool<T> where T:class
     {
+        
         private static Pool<T> instance; 
         public static Pool<T> Instance()
         {
@@ -36,6 +37,16 @@ namespace Blockchain
         public List<Block<T>> GetList()
         {
             return blocksList;
+        }
+
+        public void LoadDataFromFile()
+        {
+
+        }
+
+        public void SaveDataToFile()
+        {
+
         }
 
 

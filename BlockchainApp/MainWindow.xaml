@@ -9,16 +9,44 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <ListView Grid.Column="1" >
-            
+
         </ListView>
-        <GridSplitter Grid.Column="1"  Width="5"/>
-        <Grid Grid.Column="2" Width="{Binding AddPanelWidth}">
-            <Button Content="Open" HorizontalAlignment="Left" Margin="-50,10,0,0" VerticalAlignment="Top" Width="50"/>
-            <Button Content="Add" HorizontalAlignment="Left" Margin="-50,30,0,0" VerticalAlignment="Top" Width="50"/>
+        <GridSplitter Grid.Column="1"  Width="0"/>
+        <Grid Grid.Column="2"  Width="200">
+            <Button   Margin="-40,10,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="OpenData" HorizontalAlignment="Left">
+                <Grid>
+                    <Border>
+
+                    </Border>
+                    <Image  Source="Img/Eye.png" Stretch="Fill" >
+                    </Image>
+                </Grid>
+            </Button>
+            <Button  HorizontalAlignment="Left" Margin="-40,55,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="AddData">
+                <Grid>
+                    <Border>
+
+                    </Border>
+                    <Image  Source="Img/Add.png" Stretch="Fill" >
+                    </Image>
+                </Grid>
+            </Button>
+            <Grid>
+                <Border></Border>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
         </Grid>
 
     </Grid>

@@ -1,4 +1,5 @@
 ﻿using Blockchain;
+using BlockchainApp.Models;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -21,13 +22,23 @@ namespace BlockchainApp
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        public RelayCommand AddDataCommand {  get; private set; }
-        public int AddPanelWidth { set; get; }
+    {    
+        public double AddPanelWidth { set; get; }
         public MainWindow()
         {
             InitializeComponent(); 
-
+            Pool<Student>.Instance().LoadDataFromFile();
         }
+
+        private void OpenData(object sender, RoutedEventArgs e)
+        { 
+            AddPanelWidth = Double.NaN;
+        }
+        
+        private void AddData(object sender, RoutedEventArgs e)
+        {
+            AddPanelWidth = Double.NaN;
+        }
+
     }
 }

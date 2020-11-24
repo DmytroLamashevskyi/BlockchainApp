@@ -117,5 +117,11 @@
       <Name>Blockchain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Img\Eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Add.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
