@@ -1,16 +1,19 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Json;
 using System.Text;
 
 namespace Blockchain
 {
-    public class Block<T>where T:class
+    public class Block<T>where T: class
     {
         public Block(T data,Block<T> block=null)
         {
-            Data = JsonConvert.SerializeObject(data);
-            Hash = CalculateHash(Data);
+            Data = data;
+            DataJson = JsonSerializer(data);
+            Hash = CalculateHash(DataJson);
             TimeStamp = DateTime.Now;
             if (block == null)
             {
@@ -18,7 +21,7 @@ namespace Blockchain
             }
             else
             {
-                PrevHash = CalculateHash(block.Data);
+                PrevHash = CalculateHash(block.DataJson);
 
             }
         }
@@ -27,17 +30,38 @@ namespace Blockchain
         public DateTime TimeStamp { get; private set; }
         public string Hash { get; set; }
         public string PrevHash { get; set; } 
-        public string Data {private set; get; }
+        public T Data { private set; get; }
+        public string DataJson {private set; get; }
         public string Author { set; get; }
-
+        
         public T GetData()
         {
-            return JsonConvert.DeserializeObject<T>(Data); ;
+            return JsonDeserialize(DataJson); ;
         }
 
         protected virtual string CalculateHash(string data)
         {
             return data.GetHashCode().ToString();
         }
+
+
+        public static string JsonSerializer(T t)
+        {
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
+            MemoryStream ms = new MemoryStream();
+            ser.WriteObject(ms, t);
+            string jsonString = Encoding.UTF8.GetString(ms.ToArray());
+            ms.Close();
+            return jsonString;
+        }
+
+        public static T JsonDeserialize(string jsonString)
+        {
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
+            T obj = (T)ser.ReadObject(ms);
+            return obj;
+        }
+
     }
 }

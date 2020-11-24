@@ -118,10 +118,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Img\Eye.png" />
+    <Resource Include="Img\Add.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\Add.png" />
+    <Resource Include="Img\eye.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

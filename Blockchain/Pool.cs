@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Blockchain
@@ -34,9 +35,9 @@ namespace Blockchain
             blocksList.Add(block);
         }
 
-        public List<Block<T>> GetList()
+        public ObservableCollection<Block<T>> GetList()
         {
-            return blocksList;
+            return new ObservableCollection<Block<T>>(blocksList); ;
         }
 
         public void LoadDataFromFile()
