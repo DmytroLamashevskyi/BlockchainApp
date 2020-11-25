@@ -28,15 +28,22 @@ namespace BlockchainApp
     {    
         public ObservableCollection<Block<Student>> Students { get => Pool<Student>.Instance().GetList(); }
         public Block<Student> SelectedStudent { set; get; }
-        public double AddPanelWidth { set; get; }
+        public Visibility AddPanelWidth { set; get; }
+
+        public Student StudentPanel { set; get; }
         public MainWindow()
         {
+
+            AddPanelWidth = Visibility.Collapsed;
             InitializeComponent(); 
             Pool<Student>.Instance().LoadDataFromFile();
             Pool<Student>.Instance().AddBlock(new Student() { Name="Admin", Surname="Admin", Id=0, Birthday=DateTime.Now});
 
             StudentList.ItemsSource = Pool<Student>.Instance().GetList();
+            StudentPanel = new Student();
             OnPropertyChanged("Students");
+            OnPropertyChanged("StudentPanel");
+            OnPropertyChanged("AddPanelWidth");
         }
 
 
@@ -51,7 +58,7 @@ namespace BlockchainApp
         {
             if (SelectedStudent != null)
                 return;
-            AddPanelWidth = Double.NaN;
+            AddPanelWidth = Visibility.Visible;
 
         }
         
@@ -59,7 +66,8 @@ namespace BlockchainApp
         {
             Pool<Student>.Instance().AddBlock(new Student() { Name = "Admin", Surname = "Admin", Id = 0, Birthday = DateTime.Now });
             OnPropertyChanged("Students");
-            AddPanelWidth = Double.NaN;
+            AddPanelWidth = Visibility.Visible;
+            OnPropertyChanged("AddPanelWidth");
         }
 
     }
